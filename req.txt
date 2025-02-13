@@ -1,4 +1,0 @@
-Nuitka
-pillow
-pyinstaller
-pystray

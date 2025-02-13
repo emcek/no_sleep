@@ -1,0 +1,5 @@
+-r requirements_test.txt
+build
+Nuitka
+pre_commit
+pyinstaller
