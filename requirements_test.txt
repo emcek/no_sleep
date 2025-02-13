@@ -1,7 +1,7 @@
 -r requirements.txt
 interrogate==1.7.0
 isort==6.0.0
-lxml==5.3.0
+lxml==5.3.1
 mypy==1.14.1
 pip-audit==2.7.3
 ruff==0.9.6
