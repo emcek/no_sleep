@@ -1,5 +1,5 @@
 import tkinter as tk
-from ctypes import windll
+from ctypes import windll  # type: ignore[attr-defined]
 from datetime import datetime, timedelta
 from os import getpid, kill
 from pathlib import Path
