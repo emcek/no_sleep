@@ -1,0 +1,4 @@
+Nuitka
+pillow
+pyinstaller
+pystray
