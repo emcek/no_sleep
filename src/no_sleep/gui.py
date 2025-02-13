@@ -1,14 +1,13 @@
 import tkinter as tk
 from ctypes import windll
 from datetime import datetime, timedelta
-from os import kill, getpid
+from os import getpid, kill
 from pathlib import Path
 from signal import SIGINT
-from sys import argv
 from threading import Timer
 
 from PIL import Image
-from pystray import MenuItem, Icon
+from pystray import Icon, MenuItem
 
 # Informs the system that the state being set should remain in effect until the next call that uses ES_CONTINUOUS
 # and one of the other state flags is cleared.
@@ -22,8 +21,15 @@ __version__ = '1.0.2'
 
 
 class NoSleepGui(tk.Frame):
+    """No sleeep GUI."""
 
     def __init__(self, master: tk.Tk, sys_tray: bool = False) -> None:
+        """
+        Initialize the GUI.
+
+        :param master:
+        :param sys_tray:
+        """
         super().__init__(master)
         self.master: tk.Tk = master
         self.sys_tray = sys_tray
@@ -54,57 +60,40 @@ class NoSleepGui(tk.Frame):
             self.sys_tray_icon.notify('Running in background.', 'NoSleep')
 
     def _setup_system_tray(self) -> Icon:
+        """Configure the system tray icon."""
         icon = Image.open(ICON_FILE)
         menu = (MenuItem('Show', self._show_gui), MenuItem('Quit', self.exit))
         self.master.protocol('WM_DELETE_WINDOW', self._withdraw_gui)
         return Icon('no_sleep', icon, 'NoSleep', menu)
 
     def _withdraw_gui(self) -> None:
+        """Withdraw the GUI."""
         if self.sys_tray:
             self.sys_tray_icon.notify('Still running at system tray.', 'NoSleep')
         self.master.withdraw()
 
     def _show_gui(self) -> None:
+        """Show the GUI."""
         self.master.after(0, self.master.deiconify)
 
     def stay_on(self):
+        """Prevent the system from going to sleep."""
         self.status_txt.set('Will stay on')
         windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS | ES_DISPLAY_REQUIRED)
 
-    def exit(self):
-        self.status_txt.set(f'Quitting')
+    def exit(self) -> None:
+        """Exit the application."""
+        self.status_txt.set('Quitting')
         if self.sys_tray:
             self.sys_tray_icon.visible = False
         windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS)
         kill(getpid(), SIGINT)
 
-    def set_shutdown(self):
+    def set_shutdown(self) -> None:
+        """Set the shutdown time in minutes."""
         timer = self.shutdown_time.get() * 60
         shut_time = datetime.now() + timedelta(seconds=timer)
         self.status_txt.set(f'Stay on until: {shut_time.strftime("%H:%M")}')
         timer_th = Timer(timer, self.exit)
         timer_th.name = 'timer_thread'
         timer_th.start()
-
-
-def run(sys_tray: bool = False, start_min: bool = False):
-    root = tk.Tk()
-    width, height = 220, 75
-    root.geometry(f'{width}x{height}')
-    root.minsize(width=width, height=height)
-    root.iconbitmap(ICON_FILE)
-    root.title('NoSleep')
-    NoSleepGui(master=root, sys_tray=sys_tray)
-    if start_min:
-        root.withdraw()
-    root.mainloop()
-
-
-if __name__ == '__main__':
-    tray = False
-    start_as_min = False
-    if 'tray' in argv:
-        tray = True
-    if 'min' in argv:
-        start_as_min = True
-    run(sys_tray=tray, start_min=start_as_min)
