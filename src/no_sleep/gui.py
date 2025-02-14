@@ -1,4 +1,5 @@
 import tkinter as tk
+from argparse import Namespace
 from ctypes import windll  # type: ignore[attr-defined]
 from datetime import datetime, timedelta
 from os import getpid, kill
@@ -17,22 +18,22 @@ ES_SYSTEM_REQUIRED = 0x00000001
 # Forces the system to be in the working state by resetting the system idle timer.
 ES_DISPLAY_REQUIRED = 0x00000002
 ICON_FILE = Path(__file__).resolve().with_name('no_sleep.ico')
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 
 
 class NoSleepGui(tk.Frame):
-    """No sleeep GUI."""
+    """Tkinter GUI for no_sleep."""
 
-    def __init__(self, master: tk.Tk, sys_tray: bool = False) -> None:
+    def __init__(self, master: tk.Tk, cli_args: Namespace) -> None:
         """
-        Initialize the GUI.
+        Tkinter GUI for no_sleep.
 
-        :param master:
-        :param sys_tray:
+        :param master: Tkinter root
+        :param cli_args: CLI arguments
         """
         super().__init__(master)
         self.master: tk.Tk = master
-        self.sys_tray = sys_tray
+        self.sys_tray = cli_args.tray
         self.status_txt = tk.StringVar()
         self.shutdown_time = tk.IntVar()
 
