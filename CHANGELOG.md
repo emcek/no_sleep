@@ -1,3 +1,6 @@
+## 1.0.3
+* add CLI args
+
 ## 1.0.2
 * Internal fixes
 
