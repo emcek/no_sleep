@@ -1,0 +1,27 @@
+name: Build no_sleep wheel package
+
+on: workflow_call
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+
+      - name: "Set up Python environment"
+        uses: ./.github/actions/setup-python
+
+      - name: "Build no_sleep wheel package"
+        shell: bash
+        run: |
+          python -m build
+          python -m twine check dist/*
+
+      - name: "Upload no_sleep wheel"
+        uses: actions/upload-artifact@v4
+        with:
+          name: no_sleep_wheel
+          path: |
+            dist/*.whl
+            dist/*.tar.gz
