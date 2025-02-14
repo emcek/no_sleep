@@ -55,9 +55,9 @@ jobs:
   pypi:
     needs: [ wheel ]
     runs-on: ubuntu-latest
-#    environment: pypi
-#    permissions:
-#      id-token: write
+    environment: pypi
+    permissions:
+      id-token: write
 
     steps:
       - name: "Download no_sleep wheel"
@@ -73,8 +73,3 @@ jobs:
 
       - name: "Deploy to PyPI"
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_TOKEN }}
-          skip-existing: true
-          verbose: true
