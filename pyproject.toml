@@ -100,6 +100,4 @@ line_length = 160
 dev-dependencies = [
     'build',
     'pre_commit',
-    'Nuitka',
-    'pyinstaller',
 ]
