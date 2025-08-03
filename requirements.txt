@@ -1,2 +1,2 @@
-pillow==11.3.0
-pystray==0.19.5
+pillow
+pystray

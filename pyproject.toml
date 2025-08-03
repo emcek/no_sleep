@@ -30,8 +30,8 @@ keywords = [
 ]
 dynamic = ['version']
 dependencies = [
-    'pillow==11.3.0',
-    'pystray==0.19.5',
+    'pillow',
+    'pystray',
 ]
 [project.urls]
 Homepage = 'https://github.com/emcek/no_sleep'
@@ -43,15 +43,15 @@ no_sleep = 'no_sleep.run:run'
 
 [project.optional-dependencies]
 test = [
-    'GitPython==3.1.45',
-    'interrogate==1.7.0',
-    'isort==6.0.1',
-    'lxml==6.0.0',
-    'mypy==1.17.1',
-    'packaging==25.0',
-    'pip-audit==2.9.0',
-    'ruff==0.12.7',
-    'types-pillow==10.2.0.20240822',
+    'GitPython',
+    'interrogate',
+    'isort',
+    'lxml',
+    'mypy',
+    'packaging',
+    'pip-audit',
+    'ruff',
+    'types-pillow',
 ]
 
 [tool.setuptools.dynamic]
