@@ -1,4 +1,7 @@
-## 1.0.3
+## 1.0.4
+* Update PIL and use Python 3.14
+
+* ## 1.0.3
 * add CLI args
 
 ## 1.0.2

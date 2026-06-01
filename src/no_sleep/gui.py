@@ -18,7 +18,7 @@ ES_SYSTEM_REQUIRED = 0x00000001
 # Forces the system to be in the working state by resetting the system idle timer.
 ES_DISPLAY_REQUIRED = 0x00000002
 ICON_FILE = Path(__file__).resolve().with_name('no_sleep.ico')
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 
 
 class NoSleepGui(tk.Frame):
