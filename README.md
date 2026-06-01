@@ -1,5 +1,5 @@
 [![Python CI](https://github.com/emcek/no_sleep/actions/workflows/python-ci.yml/badge.svg?branch=master)](https://github.com/emcek/no_sleep/actions/workflows/python-ci.yml)
-[![image](https://img.shields.io/badge/pypi-v1.0.2-blue.svg)](https://pypi.org/project/no_sleep/)
+[![image](https://img.shields.io/badge/pypi-v1.0.4-blue.svg)](https://pypi.org/project/no_sleep/)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/emcek/no_sleep/master.svg)](https://results.pre-commit.ci/latest/github/emcek/no_sleep/master)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![image](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue.svg)](https://github.com/emcek/no_sleep)
