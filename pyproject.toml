@@ -30,7 +30,7 @@ keywords = [
 ]
 dynamic = ['version']
 dependencies = [
-    'pillow==12.2.0',
+    'pillow==12.3.0',
     'pystray==0.19.5',
 ]
 [project.urls]
@@ -98,8 +98,9 @@ html_report = 'mypyhtml'
 [tool.isort]
 line_length = 160
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
+    'no_sleep[test]',
     'build',
     'pre_commit',
 ]
