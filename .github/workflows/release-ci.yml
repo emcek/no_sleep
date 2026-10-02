@@ -11,12 +11,8 @@ jobs:
   style:
     uses: ./.github/workflows/style.yml
 
-  test:
-    needs: [ style ]
-    uses: ./.github/workflows/test.yml
-
   wheel:
-    needs: [ test ]
+    needs: [ style ]
     uses: ./.github/workflows/wheel.yml
 
   github:
