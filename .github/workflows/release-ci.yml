@@ -4,17 +4,24 @@ on:
   push:
     tags: [ "v*" ]
 
+permissions:
+  contents: write
+
 jobs:
   style:
     uses: ./.github/workflows/style.yml
 
-  wheel:
+  test:
     needs: [ style ]
+    uses: ./.github/workflows/test.yml
+
+  wheel:
+    needs: [ test ]
     uses: ./.github/workflows/wheel.yml
 
   github:
     needs: [ wheel ]
-    runs-on: windows-2025-vs2026
+    runs-on: windows-latest
     steps:
       - name: "Checkout"
         uses: actions/checkout@v7
@@ -54,7 +61,7 @@ jobs:
 
   pypi:
     needs: [ wheel ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     environment: pypi
     permissions:
       id-token: write
