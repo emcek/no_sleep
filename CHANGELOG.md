@@ -1,3 +1,7 @@
+## 1.1.0
+* Update PIL to 13.0.0.
+* Python support 3.11-3.15
+
 ## 1.0.4
 * Update PIL and use Python 3.14
 
